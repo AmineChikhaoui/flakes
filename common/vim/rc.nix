@@ -75,6 +75,7 @@ in
 
   autocmd BufNewFile,BufRead *.zig set filetype=zig
   autocmd BufNewFile,BufRead *.hcl set filetype=terraform
+  autocmd BufNewFile,BufRead *.j2 set filetype=jinja
 
   let g:LanguageClient_serverCommands = {
    \ 'zig': ['${pkgs.zls}/bin/zls'],

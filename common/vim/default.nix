@@ -47,6 +47,8 @@ in
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    withRuby = true;
+    withPython3 = true;
     plugins = allPlugins
       ++ [ pkgs.vimPlugins.nvim-cmp pkgs.vimPlugins.telescope-nvim ];
     extraConfig = commonRc;

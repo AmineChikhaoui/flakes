@@ -41,6 +41,11 @@ in
     settings = {
       user.name = "Amine Chikhaoui";
       user.email = lib.mkDefault "amine@chikhaoui.org";
+      user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMpjCPdRZTfFAO+XUpSpAf/ni8EQSAcllzyY1BDXl00V";
+      gpg.format = "ssh";
+      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      commit.gpgsign = true;
+      tag.gpgsign = true;
       alias = {
         pushall = "!git remote | xargs -L1 git push --all";
         graph = "log --decorate --oneline --graph";

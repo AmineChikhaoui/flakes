@@ -11,7 +11,6 @@
     pkgs.yarn
     pkgs.uv
     pkgs.poetry
-    (pkgs.python3.withPackages (ps: [ ps.black ]))
 
     # Cloud & infrastructure
     pkgs.terraform

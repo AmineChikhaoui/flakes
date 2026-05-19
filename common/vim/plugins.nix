@@ -52,24 +52,15 @@ let
         sha256 = "sha256:09h8p193c4mjmfqh08hmffpgdgqm5nx04mnmbcxm3w2cw05gv3jg";
       };
     };
-    sitruuna = pkgs.vimUtils.buildVimPlugin {
-      name = "sitruuna";
-      src = pkgs.fetchFromGitHub {
-        owner = "eemed";
-        repo = "sitruuna.vim";
-        rev = "e0e0a829bdeefbe7ba012f26cebdad2fb4481cb0";
-        sha256 = "sha256-S7BcKcfyP8BSzbRhh2Jo4T3yl7lEFfxPnHl7zqpSlHo=";
-      };
-    };
   };
 
   standard = [
     "vim-nix"
-    "fugitive"
+    "vim-fugitive"
     "nerdtree"
     "vim-grammarous"
-    "fzfWrapper"
-    "airline"
+    "fzf-wrapper"
+    "vim-airline"
     "vim-lawrencium"
     "vim-autoformat"
     "vim-docbk"
