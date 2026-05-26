@@ -18,13 +18,6 @@
       extraSpecialArgs = { inherit inputs; };
       modules = [
         ./common
-        hunk.homeManagerModules.default
-        {
-          programs.hunk = {
-            enable = true;
-            enableGitIntegration = true;
-          };
-        }
       ];
     };
   };
