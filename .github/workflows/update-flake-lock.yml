@@ -17,7 +17,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install Nix
-        uses: AmineChikhaoui/nix-installer-action@a84257f1b45cd29e042f3f09d67a8faa5b4346e1 # amine/hash-lock-installer
+        uses: AmineChikhaoui/nix-installer-action@f126c31cbbd65c3d98320bc28fbc14c103cf7981 # amine/hash-lock-installer
         with:
           source-checksums-url: https://www.chikhaoui.dev/sha256.txt
           source-checksums-sha256: 2900f9d1de9f23128ca53767b6580a269d34cd44258507d5bd14d647dcb9f6da
