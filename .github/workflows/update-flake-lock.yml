@@ -19,6 +19,7 @@ jobs:
       - name: Install Nix
         uses: AmineChikhaoui/nix-installer-action@cc4bc83518071974d3c178f5c24d905b23eac568 # amine/hash-lock-installer
         with:
+          source-tag: v3.21.0
           source-checksums-url: https://www.chikhaoui.dev/sha256.txt
           source-checksums-sha256: c8263618cf3dccb319db61399f8ad48779e37a6909a92c67d39d481c3c724362
       - name: Update flake.lock
