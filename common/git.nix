@@ -38,7 +38,7 @@ in
 
   programs.hunk = {
     enable = true;
-    enableGitIntegration = true;
+    #enableGitIntegration = true;
   };
 
   programs.git = {
