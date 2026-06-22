@@ -21,6 +21,6 @@ jobs:
         with:
           source-tag: v3.21.0
           source-checksums-url: https://www.chikhaoui.dev/sha256.txt
-          source-checksums-sha256: c8263618cf3dccb319db61399f8ad48779e37a6909a92c67d39d481c3c724362
+          source-checksums-sha256: 2900f9d1de9f23128ca53767b6580a269d34cd44258507d5bd14d647dcb9f6da
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@0ad9a550487687dcea451e57e09d99725e664d77 # v14
