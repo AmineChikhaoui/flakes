@@ -19,7 +19,7 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@a7ad9c4f0c65208097f4d34f3cfa1913b80cce5c
         with:
-          # source-tag: v3.21.0
+          source-tag: v3.21.0
           source-checksums-url: https://www.chikhaoui.dev/sha256.txt
           source-checksums-sha256: c8263618cf3dccb319db61399f8ad48779e37a6909a92c67d39d481c3c724362
       - name: Update flake.lock
