@@ -92,7 +92,5 @@
     pkgs.dbeaver-bin
     pkgs.nerd-fonts.fira-code
 
-    # AI
-    pkgs.codex
   ];
 }
