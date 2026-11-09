@@ -32,6 +32,7 @@ in
     vimConfigurable
     pkgs.terraform-ls
     pkgs.gopls
+    pkgs.starpls
     delveAll
     pkgs.nodejs
   ];

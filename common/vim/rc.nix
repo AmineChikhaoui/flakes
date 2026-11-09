@@ -77,6 +77,20 @@ in
   autocmd BufNewFile,BufRead *.hcl set filetype=terraform
   autocmd BufNewFile,BufRead *.j2 set filetype=jinja
 
+  augroup bazel_coc
+    autocmd!
+    autocmd BufNewFile,BufRead BUILD,BUILD.bazel,WORKSPACE,WORKSPACE.bazel,MODULE.bazel,*.bzl,*.bazel,*.star setfiletype bzl
+    autocmd FileType bzl,starlark nmap <buffer> <silent> gd <Plug>(coc-definition)
+  augroup END
+
+  call coc#config('languageserver.starpls', {
+    \ 'command': '${pkgs.starpls}/bin/starpls',
+    \ 'args': ['server'],
+    \ 'filetypes': ['bzl', 'starlark'],
+    \ 'rootPatterns': ['MODULE.bazel', 'WORKSPACE.bazel', 'WORKSPACE', '.bazelversion', '.git'],
+    \ 'requireRootPattern': v:true,
+    \ })
+
   let g:LanguageClient_serverCommands = {
    \ 'zig': ['${pkgs.zls}/bin/zls'],
    \ 'python': ['${pkgs.python3Packages.python-lsp-server}/bin/pylsp'],
