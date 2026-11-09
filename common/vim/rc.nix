@@ -1,5 +1,7 @@
 { pkgs }:
 let
+  servers = import ./servers.nix { inherit pkgs; };
+
   clangFormat = builtins.fetchurl {
     url =
       "https://raw.githubusercontent.com/llvm-mirror/clang/master/tools/clang-format/clang-format.py";
@@ -80,35 +82,25 @@ in
   augroup bazel_coc
     autocmd!
     autocmd BufNewFile,BufRead BUILD,BUILD.bazel,WORKSPACE,WORKSPACE.bazel,MODULE.bazel,*.bzl,*.bazel,*.star setfiletype bzl
-    autocmd FileType bzl,starlark nmap <buffer> <silent> gd <Plug>(coc-definition)
   augroup END
 
-  call coc#config('languageserver.starpls', {
-    \ 'command': '${pkgs.starpls}/bin/starpls',
-    \ 'args': ['server'],
-    \ 'filetypes': ['bzl', 'starlark'],
-    \ 'rootPatterns': ['MODULE.bazel', 'WORKSPACE.bazel', 'WORKSPACE', '.bazelversion', '.git'],
-    \ 'requireRootPattern': v:true,
-    \ })
+  call coc#config('languageserver', json_decode('${builtins.toJSON servers}'))
 
-  let g:LanguageClient_serverCommands = {
-   \ 'zig': ['${pkgs.zls}/bin/zls'],
-   \ 'python': ['${pkgs.python3Packages.python-lsp-server}/bin/pylsp'],
-   \ 'dhall': ['dhall-lsp-server'],
-   \ 'terraform': ['terraform-ls'],
-   \ 'go': ['gopls'],
-   \ }
+  let g:go_def_mapping_enabled = 0
+  let g:go_code_completion_enabled = 0
+  let g:go_doc_keywordprg_enabled = 0
+  let g:go_gopls_enabled = 0
 
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  nnoremap <silent> gh :call LanguageClient_textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-  nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
-  nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-  nnoremap <silent> gff :call LanguageClient_textDocument_formatting()<CR>
+  nmap <silent> <F5> <Plug>(coc-codeaction-cursor)
+  nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gr <Plug>(coc-references)
+  nnoremap <silent> gs :CocList outline<CR>
+  nmap <silent> <F2> <Plug>(coc-rename)
+  nmap <silent> gff <Plug>(coc-format)
   inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
   inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 
   " Use `[g` and `]g` to navigate diagnostics
   nmap <silent> [g <Plug>(coc-diagnostic-prev)

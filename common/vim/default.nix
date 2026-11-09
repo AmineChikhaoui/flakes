@@ -5,7 +5,6 @@ let
 
   allPlugins =
     (lib.attrValues plugins.custom)
-    ++ [ pkgs.vimPlugins.LanguageClient-neovim ]
     ++ (map (p: pkgs.vimPlugins.${p}) plugins.standard);
 
   vimConfigurable = pkgs.vim-full.customize {
@@ -33,6 +32,10 @@ in
     pkgs.terraform-ls
     pkgs.gopls
     pkgs.starpls
+    pkgs.zls
+    pkgs.python3Packages.python-lsp-server
+    pkgs.dhall-lsp-server
+    pkgs.typescript-language-server
     delveAll
     pkgs.nodejs
   ];
@@ -50,8 +53,7 @@ in
     vimAlias = true;
     withRuby = true;
     withPython3 = true;
-    plugins = allPlugins
-      ++ [ pkgs.vimPlugins.nvim-cmp pkgs.vimPlugins.telescope-nvim ];
+    plugins = allPlugins;
     extraConfig = commonRc;
   };
 }
